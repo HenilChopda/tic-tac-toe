@@ -11,6 +11,7 @@ var lines = [
   [0, 4, 8],
   [2, 4, 6],
 ];
+var counto = 0, countx=0 ; 
 function App() {
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
   const [player, setPlayer] = useState(0);
@@ -34,6 +35,9 @@ function App() {
     const calculatedWinner = calculateWinner(newBoard);
     if (calculatedWinner) {
       setWinner(calculatedWinner);
+      console.log(player);
+      if(player=='1') countx++;
+      else if(player=='0') counto++;
     } else {
       setPlayer((prev) => (prev ? 0 : 1));
     }
@@ -47,6 +51,7 @@ function App() {
 
   return (
     <div className="tic-tac-toe">
+      <div className="win_num">Total : X {countx} , O {counto} </div>
       <div className="status">
         {winner ? `Winner: ${winner}` : `Next player: ${player ? 'X' : 'O'}`}
       </div>
